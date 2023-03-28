@@ -1,0 +1,34 @@
+﻿  @model Libros
+ 
+<div class="card" style="width: 28rem; float:left">
+    <img class="card-img-top" src="~/images/@Model.Portada" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Autor</h5>
+        <p class="card-text">Título original: @Model.Titulo</p>
+        <p class="card-text">@Model.Resumen</p>
+    </div>
+</div>
+ 
+<div class="card" style="width: 28rem; float:left">
+    <h4 style="color:blue">@ViewData["DATOS"]</h4>
+    <a asp-controller="Libros" asp-action="Index"
+       asp-route-posicion="@ViewData["ANTERIOR"]"
+      
+       class="btn btn-danger">Anterior</a>
+    <a asp-controller="Libros" asp-action="Index"
+        
+       asp-route-posicion="@ViewData["SIGUIENTE"]"
+       class="btn btn-default">Siguiente</a>
+    
+    <div class="card-body">
+        
+        <h5 class="card-title">@Model.Editorial</h5>
+        <h5 class="card-title">@Model.Precio</h5>
+       
+ 
+    </div>
+</div>
+
+
+  <a style="color:blue" asp-controller="Libros" asp-action="Detalles" asp-route-idlibro="@Model.IdLibro">Detalles</a>
+

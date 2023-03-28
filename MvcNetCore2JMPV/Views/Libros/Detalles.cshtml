@@ -1,0 +1,84 @@
+﻿@using MvcNetCore2JMPV.Extensions
+@model MvcNetCore2JMPV.Models.Libros
+
+@{
+    List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
+
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Libros</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdLibro)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdLibro)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Editorial)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Editorial)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Portada)
+        </dt>
+        <dd class="col-sm-10">
+           
+            <img src="~/images/@Model.Portada" style="width:200px;height:200px"/>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Resumen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Resumen)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdGenero)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdGenero)
+        </dd>
+    </dl>
+</div>
+
+<div>
+
+    @if (carrito != null && carrito.Contains(Model.IdLibro))
+    {
+        <button style="font-weight:bold" disabled class="btn btn-outline-danger disabled">En carrito</button>
+    }
+    else
+    {
+        <a asp-controller="Libros" asp-action="Detalles" asp-route-idlibro="@Model.IdLibro" asp-route-idlibrocarrito="@Model.IdLibro">
+            Añadir al Carrito
+        </a>
+    }
+
+</div>
+<div>
+
+    <a asp-controller="Libros" asp-action="Index">Libros</a>
+</div>

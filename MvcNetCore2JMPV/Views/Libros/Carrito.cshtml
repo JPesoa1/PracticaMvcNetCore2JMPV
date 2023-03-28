@@ -1,0 +1,38 @@
+﻿@model List<Libros>
+
+@if (Model != null)
+{
+    <a asp-controller="Libros" asp-action="Compra">Comprar</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Precio</th>
+                <th>Poster</th>
+                <th>Titulo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Libros libro in @Model)
+            {
+                <tr>
+                    <td>@libro.Autor</td>
+                    <td>@libro.Editorial</td>
+                    <td>@libro.Precio</td>
+                    <td><img src="~/images/@libro.Portada" style="width:200px;height:200px"/></td>
+                    <td>@libro.Titulo</td>
+                    <td><a asp-controller="Libros" asp-action="Carrito" asp-route-idcarrito="@libro.IdLibro" >Eliminar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+        
+}else
+{
+    <h1>Nada en el carrito</h1>
+}
+
+

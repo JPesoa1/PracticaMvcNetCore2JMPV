@@ -1,0 +1,40 @@
+﻿@using System.Security.Claims
+@using MvcNetCore2JMPV.Extensions
+@{
+    var imagen = Context.User.FindFirstValue("imagen");
+    List<int> libros =Context.Session.GetObject<List<int>>("CARRITO");
+    int total;
+    if (libros != null)
+    {
+        total = libros.Count();
+    }
+    else
+    {
+        total = 0;
+    }
+
+
+}
+
+@if (Context.User.Identity.IsAuthenticated == true)
+{
+
+
+    <li class="nav-item">
+        <h1>Bienvenido @Context.User.FindFirstValue(ClaimTypes.Email)</h1>
+        <img style="width:90px;height:90px" src="~/images/@imagen" />
+
+    </li>
+    <li class="nav-item">
+        <a asp-controller="Managed" asp-action="LogOut">
+            Log Out
+        </a>
+    </li>
+   
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Libros" asp-action="VistaPedidos">Mis Pedidos</a>
+    </li>
+     <li class="nav-item">
+        Libros en el carrito: @total
+    </li>
+}
